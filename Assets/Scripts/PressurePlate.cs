@@ -4,13 +4,46 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public GameObject door;
+    public GameObject pad;
+
+    float door_y, button_y, initial_door_y, initial_button_y;
+    Vector3 startPos, endPos;
+    bool pressed = false;
+    // Use this for initialization
+    void Start () {
+        initial_button_y = pad.transform.position.y;
+        startPos = door.transform.position;
+        endPos = new Vector3(door.transform.position.x, door.transform.position.y + 4, door.transform.position.z);
+
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        if (pad.transform.position.y < (initial_button_y - 0.1f))
+        {
+            Debug.Log("pressed");
+            //door.transform.position = endPos;
+            door.transform.position = Vector3.MoveTowards(door.transform.position, endPos, Time.deltaTime);
+        } else
+        {
+            //door.transform.position = startPos;
+            door.transform.position = Vector3.MoveTowards(door.transform.position, startPos, Time.deltaTime);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.tag == "weighted_cube")
+        {
+            pressed = true;
+        }
+        else
+        {
+            pressed = false;
+
+        }
+    }
 }
