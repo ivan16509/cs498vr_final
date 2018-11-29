@@ -25,25 +25,10 @@ public class PressurePlate : MonoBehaviour {
         if (pad.transform.position.y < (initial_button_y - 0.1f))
         {
             Debug.Log("pressed");
-            //door.transform.position = endPos;
             door.transform.position = Vector3.MoveTowards(door.transform.position, endPos, Time.deltaTime);
         } else
         {
-            //door.transform.position = startPos;
             door.transform.position = Vector3.MoveTowards(door.transform.position, startPos, Time.deltaTime);
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.gameObject.tag == "weighted_cube")
-        {
-            pressed = true;
-        }
-        else
-        {
-            pressed = false;
-
         }
     }
 }
