@@ -5,8 +5,8 @@ using UnityEngine;
 public class GravityBox : MonoBehaviour {
 
     // Use this for initialization
-    protected Vector3 grav = new Vector3(0f, -9.8f, 0f);
-    protected bool gravOn = true;
+    public Vector3 grav = new Vector3(0f, -9.8f, 0f);
+    public bool gravOn = true;
 	void Start () {
 		
 	}
@@ -16,15 +16,10 @@ public class GravityBox : MonoBehaviour {
         if (gravOn)
         {
             gameObject.GetComponent<Rigidbody>().velocity += grav * Time.deltaTime;
-
         }
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("a")) 
         {
-            this.InvertGravity();
-        }
-        if (Input.GetKeyDown("a"))
-        {
-            this.SetGravity(new Vector3(-1, 0, 0));
+            InvertGravity();
         }
     }
     public void SetGravity(Vector3 newGrav)
