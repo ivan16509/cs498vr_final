@@ -36,11 +36,18 @@ public class GravityPlayer : GravityBox
         if (!switching)
         {
             Vector3 dir = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-            gameObject.transform.Translate(new Vector3(dir.x / 25f, 0, dir.y/ 25f));
+
+            GameObject[] objs = GameObject.FindGameObjectsWithTag("MainCamera");
+
+            Camera cam = objs[0].GetComponent<Camera>();
+
+            Vector3 t = new Vector3(-1 *Camera.main.transform.forward.x * dir.x / 50f, 0, Camera.main.transform.forward.z * dir.y / 50f);
+
+            gameObject.transform.Translate(t);
 
 
             Vector3 rot = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
-            gameObject.transform.Rotate(new Vector3(0, rot.x, 0));
+            gameObject.transform.Rotate(new Vector3(0, rot.x / 5f, 0));
 
 
 
