@@ -41,7 +41,7 @@ public class GravityPlayer : GravityBox
 
             Camera cam = objs[0].GetComponent<Camera>();
 
-            Vector3 t = new Vector3(-1 *Camera.main.transform.forward.x * dir.x / 50f, 0, Camera.main.transform.forward.z * dir.y / 50f);
+            Vector3 t = new Vector3(dir.x / 25f, 0,  dir.y / 25f);
 
             gameObject.transform.Translate(t);
 

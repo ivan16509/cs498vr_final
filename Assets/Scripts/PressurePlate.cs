@@ -6,6 +6,7 @@ public class PressurePlate : MonoBehaviour {
 
     public GameObject door;
     public GameObject pad;
+    public bool debug;
 
     float door_y, button_y, initial_door_y, initial_button_y;
     Vector3 startPos, endPos;
@@ -21,10 +22,9 @@ public class PressurePlate : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
-        if (pad.transform.position.y < (initial_button_y - 0.1f))
+        
+        if (Mathf.Abs(pad.transform.position.y - initial_button_y) > 0.1f)
         {
-            Debug.Log("pressed");
             door.transform.position = Vector3.MoveTowards(door.transform.position, endPos, Time.deltaTime);
         } else
         {
