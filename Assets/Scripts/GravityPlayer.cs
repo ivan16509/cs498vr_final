@@ -31,7 +31,7 @@ public class GravityPlayer : GravityBox
             InvertGravity();
         }
         if (gravOn)
-            gameObject.GetComponent<Rigidbody>().velocity += grav * Time.deltaTime;
+            //gameObject.GetComponent<Rigidbody>().velocity += grav * Time.deltaTime;
 
         if (!switching)
         {
