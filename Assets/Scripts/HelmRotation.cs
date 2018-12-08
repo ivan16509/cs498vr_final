@@ -14,10 +14,12 @@ public class HelmRotation : MonoBehaviour {
 	void Update () {
         //transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z);
         //transform.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
+        /*
         if (transform.GetComponent<Rigidbody>().angularVelocity.magnitude > 6)
         {
             transform.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
             player.InvertGravity();
-        } 
+        }
+        */
     }
 }

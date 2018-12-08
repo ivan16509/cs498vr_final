@@ -17,10 +17,6 @@ public class GravityBox : MonoBehaviour {
         {
             gameObject.GetComponent<Rigidbody>().velocity += grav * Time.deltaTime;
         }
-        if (Input.GetKeyDown("a")) 
-        {
-            InvertGravity();
-        }
     }
     public void SetGravity(Vector3 newGrav)
     {
