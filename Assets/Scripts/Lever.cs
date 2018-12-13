@@ -21,6 +21,7 @@ public class Lever : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
         initial_position = transform.position.y;
         max_position = initial_position + .214f * 2;
     }
@@ -54,7 +55,7 @@ public class Lever : MonoBehaviour {
     {
         if (Curr == null)
         {
-            if ( !Left.IsGrabbing && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > 0 && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) > 0
+            if ( !Left.IsGrabbing() && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > 0 && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) > 0
             && (Left.transform.position - transform.position).magnitude < .8f)
             {
                 Curr = Left;
@@ -62,7 +63,7 @@ public class Lever : MonoBehaviour {
                 Curr.SetGrabbing(true);
 
             }
-            else if ( !Right.IsGrabbing && OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0 && OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) > 0
+            else if ( !Right.IsGrabbing() && OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0 && OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) > 0
                 && (Right.transform.position - transform.position).magnitude < .8f)
             {
                 Curr = Right;
@@ -114,8 +115,16 @@ public class Lever : MonoBehaviour {
         }
 
         if (transform.position.y == max_position && isLow || transform.position.y == initial_position && !isLow)
-        {
+        {            
             Player.InvertGravity();
+            GravityBox[] boxes = GameObject.FindObjectsOfType<GravityBox>();
+            foreach (GravityBox b in boxes)
+            {
+                Debug.Log(b);
+                b.InvertGravity();
+            }
+
+            isLow = !isLow;
         }
 
     }

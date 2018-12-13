@@ -1223,7 +1223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae23d27cce7d64ebc77a226afd8218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsGrabbing: 0
+  grabButtons: 
+  Controller: 1
 --- !u!114 &114820876056755304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1527,7 +1528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae23d27cce7d64ebc77a226afd8218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsGrabbing: 0
+  grabButtons: 
+  Controller: 2
 --- !u!114 &114996619829763994
 MonoBehaviour:
   m_ObjectHideFlags: 1

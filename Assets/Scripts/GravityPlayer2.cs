@@ -302,7 +302,7 @@ public class GravityPlayer2 : MonoBehaviour
         moveDirection += MoveThrottle * SimulationRate * Time.deltaTime;
 
         // Gravity
-        if (IsGrounded() && FallSpeed <= 0)
+        if (IsGrounded() && FallSpeed <= 3)
             FallSpeed = ((Physics.gravity.y * (GravityModifier * 0.002f)));
         else
             FallSpeed += ((Physics.gravity.y * (GravityModifier * 0.002f)) * SimulationRate * Time.deltaTime);
@@ -327,11 +327,13 @@ public class GravityPlayer2 : MonoBehaviour
         Vector3 predictedXZ = Vector3.Scale((Controller.transform.localPosition + moveDirection), new Vector3(1, 0, 1));
 
         // Move contoller
+
         Controller.Move(moveDirection);
         Vector3 actualXZ = Vector3.Scale(Controller.transform.localPosition, new Vector3(1, 0, 1));
 
         if (predictedXZ != actualXZ)
             MoveThrottle += (actualXZ - predictedXZ) / (SimulationRate * Time.deltaTime);
+        
     }
 
 
