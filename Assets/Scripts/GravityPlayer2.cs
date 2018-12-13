@@ -153,13 +153,29 @@ public class GravityPlayer2 : MonoBehaviour
     private float buttonRotation = 0f;
     private bool ReadyToSnapTurn; // Set to true when a snap turn has occurred, code requires one frame of centered thumbstick to enable another snap turn.
 
+
+
+    bool beforeRot = false;
+    Texture2D blk;
+    public bool fade = false;
+    public float alph;
+
     void Start()
     {
         // Add eye-depth as a camera offset from the player controller
         var p = CameraRig.transform.localPosition;
         p.z = OVRManager.profile.eyeDepth;
         CameraRig.transform.localPosition = p;
-        
+
+        blk = new Texture2D(1, 1);
+        blk.SetPixel(0, 0, new Color(0, 0, 0, 0));
+        blk.Apply();
+
+
+    }
+    void OnGUI()
+    {
+        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), blk);
     }
 
     void Awake()
@@ -211,6 +227,25 @@ public class GravityPlayer2 : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
             buttonRotation += RotationRatchet;
+
+        if (Input.GetKeyDown("c"))
+        {
+            InvertGravity();
+        }
+
+        if (alph > 0)
+        {
+            alph -= Time.deltaTime * .2f;
+            if (alph < 0) { alph = 0f; }
+            blk.SetPixel(0, 0, new Color(0, 0, 0, alph));
+            blk.Apply();
+        }
+        else
+        {
+            alph = 0f;
+        }
+        
+        
     }
 
     protected virtual void UpdateController()
@@ -304,6 +339,10 @@ public class GravityPlayer2 : MonoBehaviour
     {
         GravityModifier *= -1;
         gameObject.transform.Rotate(new Vector3(0.0f, 0.0f, 180.0f));
+
+        alph = 1;
+        blk.SetPixel(0, 0, new Color(0, 0, 0, alph));
+        blk.Apply();
     }
 
     public bool IsGrounded()
@@ -326,7 +365,8 @@ public class GravityPlayer2 : MonoBehaviour
 
 
     public virtual void UpdateMovement()
-    {
+    {   
+
         if (HaltUpdateMovement)
             return;
 

@@ -16,7 +16,7 @@ public class GravityPlayer : GravityBox
     void Start()
     {
         blk = new Texture2D(1, 1);
-        blk.SetPixel(0, 0, new Color(0, 0, 0, 0));
+        blk.SetPixel(0, 0, new Color(0, 0, 0, 1));
         blk.Apply();
 
        
@@ -95,6 +95,7 @@ public class GravityPlayer : GravityBox
                 if (alph > 1) { alph = 1f; }
                 blk.SetPixel(0, 0, new Color(0, 0, 0, alph));
                 blk.Apply();
+
             }
         }
 

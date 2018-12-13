@@ -6,27 +6,119 @@ public class Lever : MonoBehaviour {
 
     private float initial_position;
     private float max_position;
-	// Use this for initialization
-	void Start () {
+
+    public SimpleGrabber Left;
+    public SimpleGrabber Right;
+
+    private SimpleGrabber Curr = null;
+    private float prev_y;
+
+    public GravityPlayer2 Player;
+
+    bool grabbing = false;
+
+    bool isLow = true;
+
+    // Use this for initialization
+    void Start () {
         initial_position = transform.position.y;
-        max_position = initial_position + .214f;
+        max_position = initial_position + .214f * 2;
     }
 
     // Update is called once per frame
-    void Update () {
-        //transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z);
-        Debug.Log(transform.position.y);
-        /*
-        if (transform.position.y <= max_position && transform.position.y >= initial_position)
+    void Update() {
+        // Performing a grab
+        GrabCheck();
+        // Grabbing an object
+        if (Curr != null)
         {
-            enabled = true;
+            UpdateGrabbing();
+        }
+
+
+        // Extra Settings!
+        if (transform.position.y > max_position)
+        {
+            transform.position = new Vector3(transform.position.x, max_position, transform.position.z);
+        }
+        if (transform.position.y < initial_position)
+        {
+            transform.position = new Vector3(transform.position.x, initial_position, transform.position.z);
+
+        }
+        transform.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
+    }
+
+    // check if there is grab, update object info
+    void GrabCheck()
+    {
+        if (Curr == null)
+        {
+            if ( !Left.IsGrabbing && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > 0 && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) > 0
+            && (Left.transform.position - transform.position).magnitude < .8f)
+            {
+                Curr = Left;
+                prev_y = Curr.transform.position.y;
+                Curr.SetGrabbing(true);
+
+            }
+            else if ( !Right.IsGrabbing && OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0 && OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) > 0
+                && (Right.transform.position - transform.position).magnitude < .8f)
+            {
+                Curr = Right;
+                prev_y = Curr.transform.position.y;
+                Curr.SetGrabbing(true);
+
+            }
+        }
+    }
+
+
+
+    // What to perform when grabbing
+    void UpdateGrabbing()
+    {
+        if (!(OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > 0 && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) > 0) && Curr == Left)
+        {
+            LetGo();
+        }
+        else if (!(OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0 && OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) > 0) && Curr == Right)
+        {
+            LetGo();
         }
         else
         {
-            enabled = false;
+            float diff = Curr.transform.position.y - prev_y;
+            transform.Translate(new Vector3(0, diff, 0));
+            prev_y = Curr.transform.position.y;
         }
-        */
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-        transform.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
     }
+
+    // What to do when letting go
+    void LetGo()
+    {
+        // MUST DO
+        Curr.SetGrabbing(false);
+        Curr = null;
+
+        // ACTION
+        float distFromStart = Mathf.Abs(transform.position.y - initial_position);
+        float distFromMax = Mathf.Abs(transform.position.y - max_position);
+
+        if (distFromStart < distFromMax)
+        {
+            transform.position = new Vector3(transform.position.x, initial_position, transform.position.z);
+        } else
+        {
+            transform.position = new Vector3(transform.position.x, max_position, transform.position.z);
+        }
+
+        if (transform.position.y == max_position && isLow || transform.position.y == initial_position && !isLow)
+        {
+            Player.InvertGravity();
+        }
+
+    }
+
+    
 }
