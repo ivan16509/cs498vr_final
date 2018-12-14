@@ -25,7 +25,6 @@ public class RayPoint : MonoBehaviour {
         lineRenderer.SetPositions(new Vector3[] { transform.position, transform.TransformDirection(Vector3.forward) * 100 });
         if (OVRInput.Get(button) && sinceHit > 2)
         {
-            lineRenderer.material.color = Color.red;
             lineRenderer.enabled = true;
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward)*100 - transform.position, out hit, 100))

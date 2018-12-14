@@ -117,14 +117,6 @@ public class Lever : MonoBehaviour {
         if (transform.position.y == max_position && isLow || transform.position.y == initial_position && !isLow)
         {            
             Player.InvertGravity();
-            GravityBox[] boxes = GameObject.FindObjectsOfType<GravityBox>();
-            foreach (GravityBox b in boxes)
-            {
-                Debug.Log(b);
-                b.InvertGravity();
-            }
-
-            isLow = !isLow;
         }
 
     }

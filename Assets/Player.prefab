@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 114447190700023672}
   - component: {fileID: 135878592948984350}
   - component: {fileID: 114994270433711574}
+  - component: {fileID: 114848376988956970}
   m_Layer: 0
   m_Name: RightHandAnchor
   m_TagString: Untagged
@@ -171,7 +172,6 @@ GameObject:
   - component: {fileID: 114313800579123534}
   - component: {fileID: 114452051314195692}
   - component: {fileID: 114873630162374994}
-  - component: {fileID: 114921247589346648}
   - component: {fileID: 54294154504958274}
   m_Layer: 0
   m_Name: hand_right
@@ -256,7 +256,6 @@ GameObject:
   - component: {fileID: 114126940000065534}
   - component: {fileID: 114034052559741740}
   - component: {fileID: 114996619829763994}
-  - component: {fileID: 114034892211240202}
   - component: {fileID: 54196953343404762}
   m_Layer: 0
   m_Name: hand_left
@@ -325,6 +324,7 @@ GameObject:
   - component: {fileID: 114820876056755304}
   - component: {fileID: 135069434568005194}
   - component: {fileID: 114746936623187678}
+  - component: {fileID: 114351760021274154}
   m_Layer: 0
   m_Name: LeftHandAnchor
   m_TagString: Untagged
@@ -444,15 +444,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1954709376588692}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 2, z: -55}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 2, z: -4}
   m_LocalScale: {x: 1, y: 1.2, z: 1}
   m_Children:
   - {fileID: 4856541147316712}
   - {fileID: 4894533480992190}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4597281676764458
 Transform:
   m_ObjectHideFlags: 1
@@ -894,18 +894,6 @@ MonoBehaviour:
   - {fileID: 0}
   ClothingAlphaTexture: 0
   ClothingAlphaOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &114034892211240202
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1843603976435432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21ba249586f93c54f9079b7cc74647f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: 256
 --- !u!114 &114126940000065534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1034,6 +1022,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53b07ad62d980a4da9fffff0b05fd2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114351760021274154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1965316449041862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ba249586f93c54f9079b7cc74647f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: 256
 --- !u!114 &114447190700023672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae23d27cce7d64ebc77a226afd8218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabButtons: 
+  grabButtons: 0000001000000020
   Controller: 1
 --- !u!114 &114820876056755304
 MonoBehaviour:
@@ -1244,6 +1244,18 @@ MonoBehaviour:
   - {fileID: 135069434568005194}
   m_controller: 1
   m_parentTransform: {fileID: 0}
+--- !u!114 &114848376988956970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546782164462732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ba249586f93c54f9079b7cc74647f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: 1
 --- !u!114 &114867588163122790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1297,18 +1309,6 @@ MonoBehaviour:
   EnableRotation: 1
   fade: 0
   alph: 0
---- !u!114 &114921247589346648
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1674827430129712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21ba249586f93c54f9079b7cc74647f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: 1
 --- !u!114 &114951044464781888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1528,7 +1528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae23d27cce7d64ebc77a226afd8218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabButtons: 
+  grabButtons: 0000000800000004
   Controller: 2
 --- !u!114 &114996619829763994
 MonoBehaviour:
