@@ -9,6 +9,8 @@ public class Mirror : MonoBehaviour {
 
 
     public Transform MirrorCam;
+    public Transform MirrorHolder;
+
     public Transform PlayerCam;
     // Use this for initialization
     void Start () {
@@ -28,6 +30,6 @@ public class Mirror : MonoBehaviour {
         rot.eulerAngles = transform.eulerAngles - rot.eulerAngles;
         MirrorCam.localRotation = rot;
 
-       //MirrorCam.localRotation.SetEulerAngles(-transform.parent.rotation.x, transform.rotation.y, -transform.parent.rotation.z);
+        MirrorHolder.localRotation = transform.parent.parent.localRotation;
     }
 }
