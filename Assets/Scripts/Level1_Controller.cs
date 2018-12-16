@@ -16,5 +16,15 @@ public class Level1_Controller : MonoBehaviour {
         if (this.transform.position.z > 37) {
         SceneManager.LoadScene("Level2");
         }
+
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.name == "Player")
+        {
+            SceneManager.LoadScene("Level2");
+        }
+
     }
 }
