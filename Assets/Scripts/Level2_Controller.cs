@@ -4,21 +4,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class Level1_Controller : MonoBehaviour {
+public class Level2_Controller : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
 		
 	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 
-    // Update is called once per frame
-    void Update() {
-    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.gameObject.name == "Player")
         {
-            SceneManager.LoadScene("Level2");
+            SceneManager.LoadScene("Level3");
         }
 
     }
