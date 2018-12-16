@@ -10,10 +10,18 @@ public class reflection : MonoBehaviour
     public GameObject origin;
     public float dis = 20000f;
 
+    private Color laser_color = Color.green;
+
     void Start()
     {
         linr = GetComponent<LineRenderer>();
         linr.positionCount = 2;
+
+        linr.GetComponent<Renderer>().material.color = laser_color;
+        linr.SetColors(laser_color, laser_color);
+
+        linr.SetWidth(0.05F, 0);
+
     }
     void drawLines(ArrayList list)
     {
