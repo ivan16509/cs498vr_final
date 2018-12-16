@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class reflection : MonoBehaviour
 {
 
@@ -15,15 +15,6 @@ public class reflection : MonoBehaviour
         linr = GetComponent<LineRenderer>();
         linr.positionCount = 2;
     }
-    void drawLin(Vector3 position, Vector3 direction, int originNum, int endingNum)
-    {
-        if (endingNum > linr.positionCount)
-        {
-            linr.positionCount += 1;
-        }
-        linr.SetPosition(originNum, position);
-        linr.SetPosition(endingNum, position + direction);
-    }
     void drawLines(ArrayList list)
     {
         linr.positionCount = list.Count;
@@ -35,67 +26,59 @@ public class reflection : MonoBehaviour
                 linr.positionCount += 1;
             }
             linr.SetPosition(i, (Vector3)list[i]);
-            //Debug.Log(i);
-            //Debug.Log((Vector3)list[i]);
-            //Debug.Log(linr.GetPosition(i + 1));
         }
-        //Debug.Log("post");
-        //for (int i = 0; i < linr.positionCount; i++)
-        //{
-        //    Debug.Log(linr.GetPosition(i));
-        //}
     }
-    void reflect(Vector3 pos, Vector3 dir, int nRef, ArrayList positions)
+    void reflect(Vector3 pos, Vector3 dir, ArrayList positions)
     {
-        if (nRef == 0)
-        {
-            return;
-        }
+        
         //Vector3 start = pos;
+
+
         RaycastHit hit;
         Ray ray = new Ray(pos, dir);
-        if (Physics.Raycast(ray, out hit, dis))
-        {
-            //Debug.Log("hit");
-            pos = hit.point;
-            positions.Add(pos);
-            if (hit.collider.gameObject.tag == "greenMirror")
-            {
-                //Debug.Log("Green");
-                dir = Vector3.Reflect(dir, hit.normal);
-                //positions.Add(pos);
-            }
-        }
-        else
-        {
-            //Debug.Log("noHit");
-            positions.Add(ray.GetPoint(dis));
-        }
-        //Debug.Log(positions.Count);
-        //Debug.Log("pre");
-        reflect(pos, dir, nRef - 1, positions);
+        RaycastHit[] hits = Physics.RaycastAll(pos, dir.normalized).OrderBy(h => h.distance).ToArray();
 
+        while (hits.GetLength(0) != 0)
+        {
+            pos = hits[0].point;
+            positions.Add(pos);
+
+            // check if obj is mirror
+            if (hits[0].collider.gameObject.GetComponent<Mirror>() != null)
+            {
+                dir = Vector3.Reflect(dir, hits[0].normal);
+                hits = Physics.RaycastAll(pos, dir.normalized).OrderBy(h => h.distance).ToArray();
+                //positions.Add(pos);
+            } else if (hits[0].collider.gameObject.GetComponent<Transparent>() != null)
+            {
+                int len = hits.Length;
+                hits = hits.Skip(1).Take(len-1).ToArray();
+            } else
+            {
+                LaserTriggerPad val = hits[0].collider.gameObject.GetComponent<LaserTriggerPad>();
+                if (val)
+                {
+                    val.Hit();
+                }
+                break;
+            }
+            
+        }
+        // check if only the origin is in the array --> if so make laser point in "dis" direction
+        if (positions.Count == 1)
+        {
+            positions.Add(pos + dir.normalized * dis);
+        }
 
     }
     // Update is called once per frame
     void Update()
     {
-        //linr.SetPosition(0, transform.position);
-        int nRef = 5;
         ArrayList positions = new ArrayList();
         positions.Add(transform.position);
-        reflect(transform.position, transform.forward, nRef, positions);
+        reflect(transform.position, transform.up, positions);
+
         drawLines(positions);
-        Debug.Log("Pos");
-        foreach (Vector3 i in positions)
-        {
-            Debug.Log(i);
-        }
-        Debug.Log("lineR");
-        for (int i = 0; i < linr.positionCount; i++)
-        {
-            Debug.Log(linr.GetPosition(i));
-        }
 
     }
 }
