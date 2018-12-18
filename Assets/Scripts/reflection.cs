@@ -20,7 +20,7 @@ public class reflection : MonoBehaviour
         linr.GetComponent<Renderer>().material.color = laser_color;
         linr.SetColors(laser_color, laser_color);
 
-        linr.SetWidth(0.07F, 0);
+        linr.SetWidth(0.14F, 0);
 
     }
     void drawLines(ArrayList list)

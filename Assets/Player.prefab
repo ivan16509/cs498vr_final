@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 4129460747929098}
   - component: {fileID: 81856768821707822}
   - component: {fileID: 20493702027167122}
+  - component: {fileID: 114931891771826306}
   m_Layer: 0
   m_Name: CenterEyeAnchor
   m_TagString: MainCamera
@@ -445,14 +446,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1954709376588692}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2, z: -4}
+  m_LocalPosition: {x: 0.6, y: 2.34, z: -6.43}
   m_LocalScale: {x: 1, y: 1.2, z: 1}
   m_Children:
   - {fileID: 4856541147316712}
   - {fileID: 4894533480992190}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4597281676764458
 Transform:
   m_ObjectHideFlags: 1
@@ -1309,6 +1310,22 @@ MonoBehaviour:
   EnableRotation: 1
   fade: 0
   alph: 0
+  Fader: {fileID: 114931891771826306}
+--- !u!114 &114931891771826306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1423809736113156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df8e1d778abf442e4bec449c360e9e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeTime: 2
+  fadeColor: {r: 0.01, g: 0.01, b: 0.01, a: 1}
+  fadeOnStart: 1
+  renderQueue: 5000
 --- !u!114 &114951044464781888
 MonoBehaviour:
   m_ObjectHideFlags: 1

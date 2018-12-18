@@ -159,6 +159,7 @@ public class GravityPlayer2 : MonoBehaviour
     Texture2D blk;
     public bool fade = false;
     public float alph;
+    public OVRScreenFade Fader;
 
     void Start()
     {
@@ -239,6 +240,8 @@ public class GravityPlayer2 : MonoBehaviour
             if (alph < 0) { alph = 0f; }
             blk.SetPixel(0, 0, new Color(0, 0, 0, alph));
             blk.Apply();
+
+            Fader.SetUIFade(alph);
         }
         else
         {
@@ -345,6 +348,9 @@ public class GravityPlayer2 : MonoBehaviour
         alph = 1;
         blk.SetPixel(0, 0, new Color(0, 0, 0, alph));
         blk.Apply();
+
+        Fader.SetUIFade(alph);
+        
     }
 
     public bool IsGrounded()
@@ -352,10 +358,10 @@ public class GravityPlayer2 : MonoBehaviour
         int gravDir = GravityModifier > 0 ? -1 : 1;
         Vector3 dir = transform.up * gravDir;
         //edit: to draw ray also//
-        Debug.DrawRay(transform.position, dir * 1.5f, Color.green);
+        Debug.DrawRay(transform.position, dir * 1.7f, Color.green);
         //end edit//
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, dir, out hit, 1.5f))
+        if (Physics.Raycast(transform.position, dir, out hit, 1.7f))
         {
             return true;
         }

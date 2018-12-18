@@ -211,11 +211,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4682501927361646, guid: 7b80dc0780d1bd143b020a4c70a53873, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.1
+      value: 4.71
       objectReference: {fileID: 0}
     - target: {fileID: 4682501927361646, guid: 7b80dc0780d1bd143b020a4c70a53873, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -27.6
+      value: 3.08
       objectReference: {fileID: 0}
     - target: {fileID: 4682501927361646, guid: 7b80dc0780d1bd143b020a4c70a53873, type: 2}
       propertyPath: m_LocalRotation.x
@@ -237,6 +237,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 108227106662883396, guid: 7b80dc0780d1bd143b020a4c70a53873,
+        type: 2}
+      propertyPath: m_Range
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 65829798051238232, guid: 7b80dc0780d1bd143b020a4c70a53873,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b80dc0780d1bd143b020a4c70a53873, type: 2}
   m_IsPrefabAsset: 0
@@ -256,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803e8ec22066ae94b8329409b78946be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scenename: Level2
 --- !u!1001 &155397844
 Prefab:
   m_ObjectHideFlags: 0

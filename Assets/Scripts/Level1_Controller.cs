@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Level1_Controller : MonoBehaviour {
 
+
+    public string scenename;
 	// Use this for initialization
 	void Start () {
 		
@@ -14,12 +16,14 @@ public class Level1_Controller : MonoBehaviour {
     // Update is called once per frame
     void Update() {
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (collision.collider.gameObject.name == "Player")
+        Debug.Log("wtf");
+        if (collider.gameObject.name == "Player")
         {
-            SceneManager.LoadScene("Level2");
+            SceneManager.LoadScene(scenename);
         }
 
     }
+    
 }

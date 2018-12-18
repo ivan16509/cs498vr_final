@@ -117,6 +117,7 @@ public class Lever : MonoBehaviour {
         if (transform.position.y == max_position && isLow || transform.position.y == initial_position && !isLow)
         {            
             Player.InvertGravity();
+            isLow = !isLow;
         }
 
     }
