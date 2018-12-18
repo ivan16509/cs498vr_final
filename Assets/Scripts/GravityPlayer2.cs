@@ -356,12 +356,18 @@ public class GravityPlayer2 : MonoBehaviour
     public bool IsGrounded()
     {
         int gravDir = GravityModifier > 0 ? -1 : 1;
+
+        CharacterController charContr = GetComponent<CharacterController>();
+        float rad = charContr.radius;
+
         Vector3 dir = transform.up * gravDir;
-        //edit: to draw ray also//
         Debug.DrawRay(transform.position, dir * 1.7f, Color.green);
-        //end edit//
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, dir, out hit, 1.7f))
+        if (Physics.Raycast(transform.position, dir, out hit, 1.7f) 
+             || Physics.Raycast(transform.position + rad * new Vector3(1f, 0, 0), dir, out hit, 1.7f)
+             || Physics.Raycast(transform.position + rad * new Vector3(-1f, 0, 0), dir, out hit, 1.7f)
+             || Physics.Raycast(transform.position + rad * new Vector3(0, 0, 1f), dir, out hit, 1.7f)
+             || Physics.Raycast(transform.position + rad * new Vector3(0, 0, -1f), dir, out hit, 1.7f))
         {
             return true;
         }
