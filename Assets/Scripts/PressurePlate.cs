@@ -7,7 +7,7 @@ public class PressurePlate : MonoBehaviour {
     public GameObject door;
     public GameObject pad;
     public bool debug;
-
+    public AudioSource aud;
     public GameObject[] doors;
 
 
@@ -19,7 +19,7 @@ public class PressurePlate : MonoBehaviour {
     // Use this for initialization
     void Start () {
         initial_button_y = pad.transform.position.y;
-
+        aud = GetComponent<AudioSource>();
         if (door != null)
         {
             startPos = door.transform.position;
@@ -45,16 +45,25 @@ public class PressurePlate : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        
+        if (pad.GetComponent<Rigidbody>().velocity.magnitude > 0.2)
+        {
+            aud.Play();
+        }
+
         if (door != null)
         {
             if (Mathf.Abs(pad.transform.position.y - initial_button_y) > 0.1f)
             {
+                
+
                 door.transform.position = Vector3.MoveTowards(door.transform.position, endPos, 2*Time.deltaTime);
+                
             }
             else
             {
+                
                 door.transform.position = Vector3.MoveTowards(door.transform.position, startPos, 2*Time.deltaTime);
+
             }
         }
 
@@ -64,11 +73,15 @@ public class PressurePlate : MonoBehaviour {
             {
                 if (Mathf.Abs(pad.transform.position.y - initial_button_y) > 0.1f)
                 {
+                    
                     doors[i].transform.position = Vector3.MoveTowards(doors[i].transform.position, endPositions[i], 2*Time.deltaTime);
+
                 }
                 else
                 {
+                    
                     doors[i].transform.position = Vector3.MoveTowards(doors[i].transform.position, startPositions[i], 2*Time.deltaTime);
+
                 }
             }
         }

@@ -42,7 +42,6 @@ public class Lever : MonoBehaviour {
         if (Curr != null)
         {
             UpdateGrabbing();
-            leverAudioSrc.Play(); 
         }
 
 
@@ -101,6 +100,10 @@ public class Lever : MonoBehaviour {
         else
         {
             float diff = Curr.transform.position.y - prev_y;
+            if (diff < .1)
+            {
+                leverAudioSrc.Play();
+            }
             transform.Translate(new Vector3(0, diff, 0));
             prev_y = Curr.transform.position.y;
         }
@@ -116,6 +119,8 @@ public class Lever : MonoBehaviour {
         // ACTION
         float distFromStart = Mathf.Abs(transform.position.y - initial_position);
         float distFromMax = Mathf.Abs(transform.position.y - max_position);
+
+
 
         if (distFromStart < distFromMax)
         {

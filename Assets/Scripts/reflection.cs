@@ -11,6 +11,7 @@ public class reflection : MonoBehaviour
     public float dis = 20000f;
 
     private Color laser_color = Color.red;
+    private Color hit_color = Color.green;
 
     void Start()
     {
@@ -46,6 +47,8 @@ public class reflection : MonoBehaviour
         Ray ray = new Ray(pos, dir);
         RaycastHit[] hits = Physics.RaycastAll(pos, dir.normalized).OrderBy(h => h.distance).ToArray();
 
+        bool isHitting = false;
+
         while (hits.GetLength(0) != 0)
         {
             pos = hits[0].point;
@@ -67,11 +70,25 @@ public class reflection : MonoBehaviour
                 if (val)
                 {
                     val.Hit();
+                    linr.GetComponent<Renderer>().material.color = hit_color;
+                    linr.SetColors(hit_color, hit_color);
+
+                    linr.SetWidth(0.14F, 0);
+                    isHitting = true;
                 }
                 break;
             }
             
         }
+
+        if (!isHitting)
+        {
+            linr.GetComponent<Renderer>().material.color = laser_color;
+            linr.SetColors(laser_color, laser_color);
+
+            linr.SetWidth(0.14F, 0);
+        }
+
         // check if only the origin is in the array --> if so make laser point in "dis" direction
         if (positions.Count == 1)
         {

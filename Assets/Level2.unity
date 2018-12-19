@@ -660,11 +660,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114899814645572546, guid: d8c87d968702428468ec3abf5cae1130,
-        type: 2}
-      propertyPath: doors.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4475235813467180, guid: d8c87d968702428468ec3abf5cae1130, type: 2}
       propertyPath: m_LocalPosition.x
       value: -7
@@ -697,11 +692,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 145447530973662948, guid: d8c87d968702428468ec3abf5cae1130,
-        type: 2}
-      propertyPath: m_ConnectedAnchor.y
-      value: 1.6199994
-      objectReference: {fileID: 0}
     - target: {fileID: 114899814645572546, guid: d8c87d968702428468ec3abf5cae1130,
         type: 2}
       propertyPath: doors.Array.data[0]
@@ -712,11 +702,6 @@ Prefab:
       propertyPath: doors.Array.data[1]
       value: 
       objectReference: {fileID: 1136418053}
-    - target: {fileID: 114899814645572546, guid: d8c87d968702428468ec3abf5cae1130,
-        type: 2}
-      propertyPath: door
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8c87d968702428468ec3abf5cae1130, type: 2}
   m_IsPrefabAsset: 0
@@ -1176,6 +1161,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114899814645572546, guid: d8c87d968702428468ec3abf5cae1130,
+        type: 2}
+      propertyPath: doors.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4475235813467180, guid: d8c87d968702428468ec3abf5cae1130, type: 2}
       propertyPath: m_LocalPosition.x
       value: -14.425
@@ -1670,6 +1660,11 @@ Prefab:
     - target: {fileID: 4443743914208032, guid: c33d3544b8b262343b94e68a42e2a77c, type: 2}
       propertyPath: m_RootOrder
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 82443461685267380, guid: c33d3544b8b262343b94e68a42e2a77c,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.483
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c33d3544b8b262343b94e68a42e2a77c, type: 2}

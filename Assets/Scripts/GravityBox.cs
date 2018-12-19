@@ -7,9 +7,12 @@ public class GravityBox : MonoBehaviour {
     // Use this for initialization
     public Vector3 grav = new Vector3(0f, -9.8f, 0f);
     public bool gravOn = true;
+    Vector3 prev; 
+
 	void Start () {
-		
-	}
+        prev = gameObject.GetComponent<Rigidbody>().velocity;
+
+    }
 	
 	// Update is called once per frame      
 	void Update () {
