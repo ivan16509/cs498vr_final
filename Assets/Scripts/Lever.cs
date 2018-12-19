@@ -19,21 +19,30 @@ public class Lever : MonoBehaviour {
 
     bool isLow = true;
 
+    public AudioSource leverAudioSrc; 
+
     // Use this for initialization
     void Start () {
 
         initial_position = transform.position.y;
         max_position = initial_position + .214f * 2;
+        leverAudioSrc = GetComponent<AudioSource>(); 
     }
 
     // Update is called once per frame
     void Update() {
         // Performing a grab
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            leverAudioSrc.Play(); 
+        }
         GrabCheck();
         // Grabbing an object
         if (Curr != null)
         {
             UpdateGrabbing();
+            leverAudioSrc.Play(); 
         }
 
 
@@ -58,6 +67,8 @@ public class Lever : MonoBehaviour {
             if ( !Left.IsGrabbing() && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > 0 && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) > 0
             && (Left.transform.position - transform.position).magnitude < .8f)
             {
+
+              
                 Curr = Left;
                 prev_y = Curr.transform.position.y;
                 Curr.SetGrabbing(true);

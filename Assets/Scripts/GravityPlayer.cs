@@ -13,12 +13,15 @@ public class GravityPlayer : GravityBox
     public float alph;
     public Camera cam;
 
+    public AudioSource gravity_AudioSrc; 
+
     void Start()
     {
         blk = new Texture2D(1, 1);
         blk.SetPixel(0, 0, new Color(0, 0, 0, 1));
         blk.Apply();
 
+        gravity_AudioSrc = GetComponent<AudioSource>(); 
        
     }
 
@@ -29,6 +32,8 @@ public class GravityPlayer : GravityBox
         if (Input.GetKeyDown("c"))
         {
             InvertGravity();
+            gravity_AudioSrc.Play(); 
+
         }
         if (gravOn)
             //gameObject.GetComponent<Rigidbody>().velocity += grav * Time.deltaTime;
